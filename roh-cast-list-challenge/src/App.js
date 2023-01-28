@@ -66,13 +66,11 @@ function App() {
       </div>
       <h1 className="App">Creatives</h1>
       <div className="sub">
-        <ul>
-          {creatives.map((x) => (
-            <li key={x.attributes.id}>
-              {x.attributes.name} - {x.attributes.role}
-            </li>
-          ))}
-        </ul>
+        {creatives.map((x) => (
+          <li key={x.attributes.id}>
+            {x.attributes.name} - {x.attributes.role}
+          </li>
+        ))}
       </div>
       <h1 className="App">Cast</h1>
       {cast.length > 0 ? (

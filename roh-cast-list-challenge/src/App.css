@@ -2,8 +2,9 @@
   text-align: center;
 }
 .sub {
-  margin-left: 15%;
-  padding-bottom: 5%;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 2%;
 }
 .App-logo {
   height: 40vmin;
