@@ -27,14 +27,28 @@ function App() {
           response.data.included[castNum].attributes.date
         ).toLocaleDateString()
       );
+      filterCreatives(response.data.included);
     });
   };
+
+  function filterCreatives(arr) {
+    let creatives = arr.filter((x) => {
+      return x.type === "creatives";
+    });
+    setCreatives(creatives);
+  }
+
   return (
     <div className="App">
       <button onClick={getData}>getData</button>
       {title}
       {date}
       {shortDesc}
+      {creatives.map((x) => (
+        <li key={x.attributes.id}>
+          {x.attributes.name} - {x.attributes.role}
+        </li>
+      ))}
     </div>
   );
 }
