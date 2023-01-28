@@ -57,18 +57,26 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      {title}
-      {date}
-      {shortDesc.slice(3, -4)}
-      {creatives.map((x) => (
-        <li key={x.attributes.id}>
-          {x.attributes.name} - {x.attributes.role}
-        </li>
-      ))}
+    <div>
+      <div className="App">
+        <h1>{title}</h1>
 
+        <p>Date: {date}</p>
+        <p>{shortDesc.slice(3, -4)}</p>
+      </div>
+      <h1 className="App">Creatives</h1>
+      <div className="sub">
+        <ul>
+          {creatives.map((x) => (
+            <li key={x.attributes.id}>
+              {x.attributes.name} - {x.attributes.role}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <h1 className="App">Cast</h1>
       {cast.length > 0 ? (
-        <div>
+        <div className="sub">
           {cast.map((person) => (
             <li key={person.id}>
               {person.attributes.name}: {person.attributes.role}
