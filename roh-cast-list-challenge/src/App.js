@@ -28,6 +28,8 @@ function App() {
         ).toLocaleDateString()
       );
       filterCreatives(response.data.included);
+      const Ids = response.data.included[castNum].relationships.cast.data;
+      filterCast(Ids, response.data.included);
     });
   };
 
@@ -38,17 +40,44 @@ function App() {
     setCreatives(creatives);
   }
 
+  function filterCast(Ids, arr) {
+    let result = [];
+    for (let i = 0; i < Ids.length; i++) {
+      for (let j = 0; j < arr.length; j++) {
+        if (Ids[i].id === arr[j].id) {
+          result.push(arr[j]);
+        }
+      }
+    }
+    setCast(result);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className="App">
-      <button onClick={getData}>getData</button>
       {title}
       {date}
-      {shortDesc}
+      {shortDesc.slice(3, -4)}
       {creatives.map((x) => (
         <li key={x.attributes.id}>
           {x.attributes.name} - {x.attributes.role}
         </li>
       ))}
+
+      {cast.length > 0 ? (
+        <div>
+          {cast.map((person) => (
+            <li key={person.id}>
+              {person.attributes.name}: {person.attributes.role}
+            </li>
+          ))}
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
